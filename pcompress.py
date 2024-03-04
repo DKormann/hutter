@@ -131,8 +131,6 @@ class PRoller:
 
     self.p2 = 0
     self.margin2 = 1
-    self.ptr2 = 0
-    self.s2 = 1
 
   def encode(self, p:float, margin:float):
 
@@ -158,22 +156,26 @@ class PRoller:
   def decode(self, ps:list[float]):
 
     cum = [self.p2]
-    for p in ps: cum += [cum [-1] + p * self.margin2]
+    for p in ps: cum += [cum[-1] + p * self.margin2]
 
     while True:
       for i in range(len(cum)-1): 
-        if self.ptr2 >= cum[i] and cum[i+1] > self.ptr2 + self.s2:
+        if 0 >= cum[i] and cum[i+1] > 1:
           self.p2 = cum[i]
           self.margin2 *= ps[i]
           return i
-      self.s2 /= 2
-      
-      if self.encoding[0] == 1:
-        self.ptr2 += self.s2
+
+      self.p2 *= 2
+      ps = [p * 2 for p in ps]
+      cum = [c * 2 for c in cum]
+
+      if self.encoding[0] == 1: 
+        cum = [c-1 for c in cum]
       self.encoding = self.encoding[1:]
+
       if len(self.encoding) == 0: 
         for i in range(len(cum)-1): 
-          if self.ptr2 >= cum[i] and cum[i+1] > self.ptr2: return i
+          if cum[i] <= 0 <= cum[i+1]: return i 
 
 roller = PRoller()
 roller.encode(0.6,0.01)
