@@ -9,6 +9,7 @@ look into [huffman.py](./huffman.py) for a simple compression example.
 
 ## todos
 
- - [ ] compress book to smaller than original using only python (huffman.py)
+ - [x] compress book to smaller than original using only python (huffman.py)
  - [ ] compress stronger than standart zip (27KB)
+ - [ ] compress down to 25% (is this even possible?)
  
