@@ -85,8 +85,6 @@ def unpack(arch):
   assert "exec" not in arch
   assert "eval" not in arch
   assert "open" not in arch
-
-
   with io.StringIO() as buf, redirect_stdout(buf):
     exec(arch, {})
     output = buf.getvalue()
@@ -95,3 +93,4 @@ def unpack(arch):
 res = unpack(arch)
 
 assert res == book.decode()
+
