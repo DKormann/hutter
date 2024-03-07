@@ -1,4 +1,7 @@
 #%%
+import os
+os.makedirs("./archives", exist_ok=True)
+
 with open("./raw/book", 'rb') as f:
   book = f.read()
 

@@ -2,6 +2,9 @@
 import math
 from arithmeticCoder import decode
 import inspect
+import os
+
+os.makedirs("./archives", exist_ok=True)
 
 with open("./raw/book", 'rb') as f: book = f.read()
 
@@ -103,3 +106,5 @@ def unpack(arch):
 res = unpack(comp.code)
 
 assert res == book.decode()
+
+# %%
