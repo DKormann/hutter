@@ -1,5 +1,5 @@
 #%%
-with open("./book", 'rb') as f:
+with open("./raw/book", 'rb') as f:
   book = f.read()
 
 def encode(raw):
@@ -72,9 +72,8 @@ def archive(book):
 arch = archive(book)
 arch
 
-with open("huffman_arch.py", "w") as f:
+with open("./archives/huffman.py", "w") as f:
   f.write(arch)
-
 
 import io
 from contextlib import redirect_stdout
