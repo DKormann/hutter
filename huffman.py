@@ -95,4 +95,3 @@ def unpack(arch):
 res = unpack(arch)
 
 assert res == book.decode()
-
